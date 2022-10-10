@@ -26,92 +26,59 @@ export default function MainPage() {
 
   return (
     <StyledMainPage>
-      <header>
-        <h1>CINEFLEX</h1>
-      </header>
-      <section>
-        <h1>Selecione o filme</h1>
-        <ul>
-          {movies.map(movie =>
-            <Link to={`/movie/${movie.id}`} key={movie.id}>
-              <li title={movie.title}>
-                <img src={movie.posterURL} alt={movie.title} />
-              </li>
-            </Link>
-          )}
-        </ul>
-      </section>
+      <h1>Selecione o filme</h1>
+      <ul>
+        {movies.map(movie =>
+          <Link to={`/movie/${movie.id}`} key={movie.id}>
+            <li title={movie.title}>
+              <img src={movie.posterURL} alt={movie.title} />
+            </li>
+          </Link>
+        )}
+      </ul>
     </StyledMainPage>
   );
 }
 
-const StyledMainPage = styled.main`
+const StyledMainPage = styled.section`
 	width: 100%;
 	min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: 1s;
+  background-color: #FFFFFF;
+  padding: 67px 0px 100px 0px;
+  font-family: 'Roboto', sans-serif;
 
-  header {
-    width: 100%;
-    height: 67px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #C3CFD9;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    h1 {
-      font-size: 34px;
-      line-height: 40px;
-      color: #E8833A;
-      text-shadow: 1px 1px 2px #000000;
-    }
+  h1 {
+    height: 110px;
+    font-size: 24px;
+    line-height: 110px;
+    color: #293845;
+    text-align: center;
   }
 
-  section {
-    width: 100%;
-    background-color: #FFFFFF;
-    padding: 67px 0px 100px 0px;
+  ul {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    transition: 1s;
-
-    h1 {
-      height: 110px;
-      font-size: 24px;
-      line-height: 110px;
-      color: #293845;
-      text-align: center;
-    }
-
-    ul {
+    flex-wrap: wrap;
+    
+    li {
+      width: 145px;
+      height: 209px;
+      box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      margin: 11px 30px 0px 0px;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      align-items: center;
       
-      li {
-        width: 145px;
-        height: 209px;
-        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
-        border-radius: 3px;
-        margin: 11px 30px 0px 0px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        img {
-          width: 129px;
-          height: 193px;
-        }
+      img {
+        width: 129px;
+        height: 193px;
       }
     }
   }

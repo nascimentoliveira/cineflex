@@ -20,6 +20,10 @@ const StyledLoadingPage = styled.main`
   justify-content: center;
   align-items: center;
   transition: 1s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
   
   h1 {
     font-size: 70px;

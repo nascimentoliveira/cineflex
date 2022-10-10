@@ -19,7 +19,7 @@ export default function Movie() {
     request.catch(error => {
       console.log(error.response.data);
     });
-  }, []);
+  }, [idMovie]);
 
   if (daySections.length === 0) {
     return <Loading />;
@@ -27,27 +27,28 @@ export default function Movie() {
 
   return (
 		<StyledMoviePage>
-      <header>
-        <h1>CINEFLEX</h1>
-      </header>
       <section>
-        <h1>Selecione o horário</h1>
+        <div>
+          <span>Selecione o horário</span>
+        </div>
           {daySections.days.map(day =>
             <Day key={day.id}>
               <span>{day.weekday} - {day.date}</span>
-              <ul>
+              <div>
                 {day.showtimes.map(section =>
                   <Link to={`/section/${section.id}`} key={section.id}>
-                    <li>{section.name}</li>
+                    <button>{section.name}</button>
                   </Link>
                 )}
-              </ul>
+              </div>
             </Day>
           )}
       </section>
       <footer>
         <img src={daySections.posterURL} alt={daySections.title} />
-        <h1>{daySections.title}</h1>
+        <div>
+          <span>{daySections.title}</span>
+        </div>
       </footer>
     </StyledMoviePage>
   );
@@ -63,35 +64,22 @@ const StyledMoviePage = styled.main`
   align-items: center;
   transition: 1s;
 
-  header {
-    width: 100%;
-    height: 67px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #C3CFD9;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    h1 {
-      font-size: 34px;
-      line-height: 40px;
-      color: #E8833A;
-      text-shadow: 1px 1px 2px #000000;
-    }
-  }
-
-  section {
+  > section {
     width: 100%;
     padding: 67px 24px 117px 24px;
 
-    h1 {
+    > div {
       height: 110px;
-      font-size: 24px;
-      line-height: 110px;
-      color: #293845;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > span {
+        font-size: 24px;
+        line-height: 30px;
+        color: #293845;
+        text-align: center;
+      }
     }
   }
 
@@ -105,7 +93,9 @@ const StyledMoviePage = styled.main`
     border: 1px solid #9EADBA;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    box-shadow: 0px -2px 4px 2px rgba(0, 0, 0, 0.1);
+    z-index: 3;
 
     img {
       width: 64px;
@@ -115,32 +105,46 @@ const StyledMoviePage = styled.main`
       border-radius: 2px;
       padding: 9px;
     }
-  }
 
+    > div {
+        display: flex;
+        flex-direction: column;
+        margin-left: 14px;
+
+        span {
+          font-size: 26px;
+          line-height: 30px;
+          color: #293845;
+      }
+    }
+  }
 `;
 
-const Day = styled.div`
+const Day = styled.section`
   width: 100%;
-  height: 100px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 24px;
   box-sizing: border-box;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 10px;
 
-  span {
-    font-size: 20px;
+  > span {
     width: 100%;
+    font-size: 20px;
     line-height: 23px;
     color: #293845;
   }
 
-  ul {
+  > div {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
 
-    li {
+    button {
       width: 83px;
       height: 43px;
       font-size: 18px;
@@ -149,7 +153,14 @@ const Day = styled.div`
       color: #FFFFFF;
       background-color: #E8833A;
       border-radius: 3px;
-      margin: 0px 9px;
+      margin: 0px 9px 9px 0px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 `;
