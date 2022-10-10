@@ -10,29 +10,36 @@ export default function Form({ seats, handleForm, form, seatsStatus, sendForm })
       (seatsStatus[seat.id] === 'selected' ?
         <div key={seat.id}>
           <label htmlFor='name'>Nome do comprador do assento {seat.name}:</label>
-          <input 
-            type='text' 
-            name='nome' 
-            onChange={e => handleForm(e, seat.id)} 
+          <input
+            data-identifier="buyer-name-input"
+            type='text'
+            name='nome'
+            onChange={e => handleForm(e, seat.id)}
             value={form[seat.id].nome}
             placeholder='Digite o nome...'
-            required 
+            required
           />
           <label htmlFor='CPF'>CPF do comprador do assento {seat.name}:</label>
-          <input 
-            type='text' 
-            name='cpf' 
-            onChange={e => handleForm(e, seat.id)} 
+          <input
+            data-identifier="buyer-cpf-input"
+            type='text'
+            name='cpf'
+            onChange={e => handleForm(e, seat.id)}
             value={form[seat.id].cpf}
-            placeholder='Digite o CPF...' 
-            required 
+            placeholder='Digite o CPF...'
+            required
           />
         </div>
         : ''
       )
       )}
       {(selecteds.length > 0 ?
-        <button type='submit'>Reservar assento(s)</button>
+        <button
+          data-identifier="reservation-btn"
+          type='submit'
+        >
+          Reservar assento(s)
+        </button>
         : '')}
     </StyledForm>
   );

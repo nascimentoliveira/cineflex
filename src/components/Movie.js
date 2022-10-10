@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 export default function Movie() {
-	const { idMovie } = useParams();
-	const [daySections, setDaySections] = useState([]);
+  const { idMovie } = useParams();
+  const [daySections, setDaySections] = useState([]);
 
   useEffect(() => {
     const request = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`);
@@ -26,28 +26,34 @@ export default function Movie() {
   }
 
   return (
-		<StyledMoviePage>
+    <StyledMoviePage>
       <section>
         <div>
           <span>Selecione o horário</span>
         </div>
-          {daySections.days.map(day =>
-            <Day key={day.id}>
-              <span>{day.weekday} - {day.date}</span>
-              <div>
-                {day.showtimes.map(section =>
-                  <Link to={`/section/${section.id}`} key={section.id}>
-                    <button>{section.name}</button>
-                  </Link>
-                )}
-              </div>
-            </Day>
-          )}
+        {daySections.days.map(day =>
+          <Day key={day.id}>
+            <span data-identifier="session-date">{day.weekday} - {day.date}</span>
+            <div>
+              {day.showtimes.map(section =>
+                <Link to={`/section/${section.id}`} key={section.id}>
+                  <button data-identifier="hour-minute-btn">{section.name}</button>
+                </Link>
+              )}
+            </div>
+          </Day>
+        )}
       </section>
       <footer>
-        <img src={daySections.posterURL} alt={daySections.title} />
+        <img
+          data-identifier="movie-img-preview"
+          src={daySections.posterURL}
+          alt={daySections.title}
+        />
         <div>
-          <span>{daySections.title}</span>
+          <span data-identifier="movie-and-session-infos-preview">
+            {daySections.title}
+          </span>
         </div>
       </footer>
     </StyledMoviePage>

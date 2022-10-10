@@ -3,7 +3,7 @@ import Seat from './Seat';
 
 export default function Labels() {
   return (
-    <StyledLabels>
+    <StyledLabels data-identifier="seat-selected-subtitle">
       <div>
         <Seat colors={{ background: '#1AAE9E', border: '#0E7D71' }} />
         <span>Selecionado</span>

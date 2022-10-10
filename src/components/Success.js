@@ -1,4 +1,4 @@
-import {useNavigate, useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Success() {
@@ -12,23 +12,39 @@ export default function Success() {
       </Status>
       <div>
         <h1>Filme e sessão</h1>
-        <h2>{location.state.movie}</h2>
-        <h2>{location.state.date} - {location.state.hour}</h2>
+        <h2 data-identifier="movie-session-infos-reserve-finished">
+          {location.state.movie}
+        </h2>
+        <h2 data-identifier="movie-session-infos-reserve-finished">
+          {location.state.date} - {location.state.hour}
+        </h2>
       </div>
       <div>
         <h1>Ingressos</h1>
         <ul>
           {location.state.buyers.map(seat =>
-          <li key={seat.idAssento}>
-            <h2>Assento {seat.nSeat}</h2>
-            <h1>Comprador</h1>
-            <h2>Nome: {seat.nome.trim()}</h2>
-            <h2>CPF {seat.cpf}</h2>
-          </li>
+            <li key={seat.idAssento}>
+              <h2 data-identifier="seat-infos-reserve-finished">
+                Assento {seat.nSeat}
+              </h2>
+              <h1>Comprador</h1>
+              <h2 data-identifier="buyer-infos-reserve-finished">
+                Nome: {seat.nome.trim()}
+              </h2>
+              <h2 data-identifier="buyer-infos-reserve-finished">
+                CPF {seat.cpf}
+              </h2>
+            </li>
           )}
         </ul>
-        </div>
-      <button type='submit' onClick={() => navigate('/') }>Voltar para Home</button>
+      </div>
+      <button
+        data-identifier="back-to-home-btn"
+        type='submit'
+        onClick={() => navigate('/')}
+      >
+        Voltar para Home
+      </button>
     </StyledSuccessPage>
   );
 }

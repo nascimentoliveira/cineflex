@@ -3,7 +3,8 @@ import seatIcon from '../assets/images/seat.svg';
 
 export default function Seat({ id, colors, name, handleClick }) {
   return (
-    <SeatStyled 
+    <SeatStyled
+      data-identifier="seat"
       color={colors}
       clickable={(handleClick)}
       onClick={() => handleClick ? handleClick(id, name) : ''}
@@ -30,7 +31,7 @@ const SeatStyled = styled.li`
   position: relative;
 
   &:hover {
-    cursor: ${props => props.clickable ? 'pointer': 'default'};
+    cursor: ${props => props.clickable ? 'pointer' : 'default'};
   }
 
   img {

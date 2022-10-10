@@ -30,7 +30,7 @@ export default function MainPage() {
       <ul>
         {movies.map(movie =>
           <Link to={`/movie/${movie.id}`} key={movie.id}>
-            <li title={movie.title}>
+            <li title={movie.title} data-identifier="movie-outdoor">
               <img src={movie.posterURL} alt={movie.title} />
             </li>
           </Link>

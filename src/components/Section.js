@@ -71,7 +71,8 @@ export default function Section() {
 
   function handleClick(id, name) {
     if (seatsStatus[id] === 'selected') {
-      if (window.confirm(`Deseja excluir a compra do assento ${name}. Os dados do comprador serão apagados.`)) {
+      if (window.confirm(`Deseja excluir a compra do assento ${name}. 
+                          Os dados do comprador serão apagados.`)) {
         setSeatsStatus({ ...seatsStatus, [id]: 'not selected' });
       }
     }
@@ -124,8 +125,12 @@ export default function Section() {
         />
       </section>
       <footer>
-        <img src={movieSection.movie.posterURL} alt={movieSection.movie.title} />
-        <div>
+        <img
+          data-identifier="movie-img-preview"
+          src={movieSection.movie.posterURL}
+          alt={movieSection.movie.title}
+        />
+        <div data-identifier="movie-and-session-infos-preview">
           <span>{movieSection.movie.title}</span>
           <span>{movieSection.day.date} - {movieSection.day.weekday} - {movieSection.name}</span>
         </div>
